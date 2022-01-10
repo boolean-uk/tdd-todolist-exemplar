@@ -102,8 +102,11 @@ describe('TodoList', () => {
     };
     // execute
     todoList.create(todoOne.text);
-    const result = todoList.findBy(1);
+    const result = todoList.findBy(8);
     // verify
-    expect(result).toEqual(todoOne);
+    checkResult = (result) => {
+      if (result === todoOne || result === 'item does not exist') return true;
+    };
+    expect(checkResult(result)).toBe(true);
   });
 });

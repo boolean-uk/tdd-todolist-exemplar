@@ -30,7 +30,9 @@ class TodoList {
   }
 
   findBy(id) {
-    return this.todoList.find((item) => item.id === id);
+    let item = this.todoList.find((item) => item.id === id);
+    if (!item) return 'item does not exist';
+    return item;
   }
 }
 
