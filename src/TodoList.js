@@ -12,6 +12,10 @@ class TodoList {
     this.todoList.push(expected);
     return expected;
   }
+
+  showAll() {
+    return this.todoList;
+  }
 }
 
 module.exports = TodoList;
