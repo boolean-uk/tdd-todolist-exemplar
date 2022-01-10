@@ -31,6 +31,14 @@ class TodoList {
     getByStatus(status) {
         return this.todos.filter(todo => todo.status === status)
     }
+
+    findBy(id) {
+        const found = this.todos.find(todo => todo.id === id)
+        if (found) {
+            return found
+        }
+        return "Item not found"
+    }
 }
 
 module.exports = TodoList

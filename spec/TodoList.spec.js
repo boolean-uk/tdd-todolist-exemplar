@@ -56,49 +56,75 @@ describe("TodoList", () => {
     // verify
     expect(result).toEqual([first, second]);
   });
-  it('set a todo to completed by id and return the new todo', () => {
+  it("set a todo to completed by id and return the new todo", () => {
     // set up
     const expected = {
       id: 1,
-      text: 'do something',
-      status: 'completed'
-    } 
-    todoList.create(expected.text)
+      text: "do something",
+      status: "completed",
+    };
+    todoList.create(expected.text);
     // execute
-    const result = todoList.setComplete(expected.id)
+    const result = todoList.setComplete(expected.id);
     // verify
-    expect(result).toEqual(expected)
-  })
-  it('can return a list of todos that are all completed', () => {
+    expect(result).toEqual(expected);
+  });
+  it("can return a list of todos that are all completed", () => {
     // set up
     const expected = [
       {
         id: 1,
-        text: 'do something',
-        status: 'completed'
-      }
-    ]
-    todoList.create('do something')
-    todoList.create('do something else')
-    todoList.setComplete(1)
+        text: "do something",
+        status: "completed",
+      },
+    ];
+    todoList.create("do something");
+    todoList.create("do something else");
+    todoList.setComplete(1);
     // execute
-    const result = todoList.getByStatus('completed')
-    expect(result).toEqual(expected)
-  })
-  it('can return a list of todos that are all incomplete', () => {
+    const result = todoList.getByStatus("completed");
+    expect(result).toEqual(expected);
+  });
+  it("can return a list of todos that are all incomplete", () => {
     // set up
     const expected = [
       {
         id: 2,
-        text: 'do something else',
-        status: 'incomplete'
-      }
-    ]
-    todoList.create('do something')
-    todoList.create('do something else')
-    todoList.setComplete(1)
+        text: "do something else",
+        status: "incomplete",
+      },
+    ];
+    todoList.create("do something");
+    todoList.create("do something else");
+    todoList.setComplete(1);
     // execute
-    const result = todoList.getByStatus('incomplete')
+    const result = todoList.getByStatus("incomplete");
+    expect(result).toEqual(expected);
+  });
+  it("can search and return a todo item by its ID", () => {
+    // set up
+    const expected = {
+      id: 2,
+      text: "do something else",
+      status: "incomplete",
+    };
+
+    todoList.create("do something");
+    todoList.create("do something else");
+    // execute
+    const result = todoList.findBy(2)
+    // verify
     expect(result).toEqual(expected)
-  })
+  });
+  it("returns an error message when trying to find a todo that doesn't exist", () => {
+    // set up
+    const expected = "Item not found"
+
+    todoList.create("do something");
+    todoList.create("do something else");
+    // execute
+    const result = todoList.findBy(3)
+    // verify
+    expect(result).toEqual(expected)
+  });
 });
