@@ -76,4 +76,20 @@ describe('TodoList', () => {
     // verify
     expect(result).toEqual(expected);
   });
+
+  it('gets todo items that are incomplete', () => {
+    // set up
+    const expected = [
+      (todoOne = {
+        id: 1,
+        text: 'turn the heating on!',
+        status: 'incomplete',
+      }),
+    ];
+    // execute
+    todoList.create(todoOne.text);
+    const result = todoList.getByStatus('incomplete');
+    // verify
+    expect(result).toEqual(expected);
+  });
 });
