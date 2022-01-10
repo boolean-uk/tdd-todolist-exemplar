@@ -27,6 +27,10 @@ class TodoList {
             return this.todos[i]
         }
     }
+
+    getByStatus(status) {
+        return this.todos.filter(todo => todo.status === status)
+    }
 }
 
 module.exports = TodoList

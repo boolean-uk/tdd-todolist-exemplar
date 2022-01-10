@@ -69,4 +69,20 @@ describe("TodoList", () => {
     // verify
     expect(result).toEqual(expected)
   })
+  it('can return a list of todos that are all completed', () => {
+    // set up
+    const expected = [
+      {
+        id: 1,
+        text: 'do something',
+        status: 'completed'
+      }
+    ]
+    todoList.create('do something')
+    todoList.create('do something else')
+    todoList.setComplete(1)
+    // execute
+    const result = todoList.getByStatus('completed')
+    expect(result).toEqual(expected)
+  })
 });
