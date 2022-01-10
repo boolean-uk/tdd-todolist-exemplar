@@ -33,8 +33,31 @@ describe('TodoList', () => {
       status: 'incomplete',
     };
     // execute
-    todoList.create(todoOne.text, todoOne.id);
-    const result = todoList.create(todoTwo.text, todoTwo.id);
+    todoList.create(todoOne.text);
+    const result = todoList.create(todoTwo.text);
+    // verify
     expect(result).toEqual(todoTwo);
+  });
+
+  it('shows all items', () => {
+    // set up
+    const expected = [
+      (todoOne = {
+        id: 1,
+        text: 'turn the heating on!',
+        status: 'incomplete',
+      }),
+      (todoTwo = {
+        id: 2,
+        text: 'make a cuppa',
+        status: 'incomplete',
+      }),
+    ];
+    // execute
+    todoList.create(todoOne.text);
+    todoList.create(todoTwo.text);
+    const result = todoList.showAll();
+    // verify
+    expect(result).toEqual(expected);
   });
 });
