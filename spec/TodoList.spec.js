@@ -1,14 +1,9 @@
 const TodoList = require("../src/TodoList.js")
 
 describe("TodoList", () => {
-  let todoList
-
-  beforeEach(() => {
-    todoList = new TodoList()
-  })
-
   it("creates a todo item", () => {
     // set up
+    const todoList = new TodoList()
     const expected = {
       id: 1,
       text: "turn the heating on!",
