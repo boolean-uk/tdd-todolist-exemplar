@@ -37,4 +37,23 @@ describe("TodoList", () => {
     // verify
     expect(result).toEqual(second)
   })
+    it("returns all todo items in the list", () => {
+    // set up
+    const first = {
+      id: 1,
+      text: 'do something',
+      status: 'incomplete'
+    }
+    const second = {
+      id: 2,
+      text: 'do something else',
+      status: 'incomplete'
+    }
+    todoList.create(first.text)
+    todoList.create(second.text)
+    // execute
+    const result = todoList.showAll()
+    // verify
+    expect(result).toEqual([first, second])
+  })
 })
