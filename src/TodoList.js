@@ -28,6 +28,10 @@ class TodoList {
     );
     return matchingItemsList;
   }
+
+  findBy(id) {
+    return this.todoList.find((item) => item.id === id);
+  }
 }
 
 module.exports = TodoList;
