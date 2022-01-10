@@ -21,6 +21,13 @@ class TodoList {
     this.todoList.find((item) => item.id === id).status = 'complete';
     return this.todoList;
   }
+
+  getByStatus(status) {
+    let matchingItemsList = this.todoList.filter(
+      (item) => item.status === status
+    );
+    return matchingItemsList;
+  }
 }
 
 module.exports = TodoList;
