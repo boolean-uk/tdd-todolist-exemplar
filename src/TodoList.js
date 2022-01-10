@@ -17,6 +17,16 @@ class TodoList {
     showAll() {
         return this.todos
     }
+
+    setComplete(id) {
+        for(let i = 0; i < this.todos.length; i++) {
+            if(this.todos[i].id !== id) {
+                continue
+            }
+            this.todos[i].status = 'completed'
+            return this.todos[i]
+        }
+    }
 }
 
 module.exports = TodoList
