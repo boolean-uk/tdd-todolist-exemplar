@@ -20,7 +20,7 @@ describe('TodoList', () => {
     expect(result).toEqual(expected);
   });
 
-  it('create multiple todo items', () => {
+  it('creates multiple todo items', () => {
     // set up
     const todoOne = {
       id: 1,
@@ -57,6 +57,22 @@ describe('TodoList', () => {
     todoList.create(todoOne.text);
     todoList.create(todoTwo.text);
     const result = todoList.showAll();
+    // verify
+    expect(result).toEqual(expected);
+  });
+
+  it('sets todo items to complete', () => {
+    // set up
+    const expected = [
+      (todoOne = {
+        id: 1,
+        text: 'turn the heating on!',
+        status: 'complete',
+      }),
+    ];
+    // execute
+    todoList.create(todoOne.text);
+    const result = todoList.setComplete(1);
     // verify
     expect(result).toEqual(expected);
   });
