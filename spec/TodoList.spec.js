@@ -127,4 +127,28 @@ describe("TodoList", () => {
     // verify
     expect(result).toEqual(expected)
   });
+  it('should delete a todo by id and return the deleted todo', () => {
+    // set up
+    const expected = {
+      id: 1,
+      text: 'do something',
+      status: 'incomplete'
+    }
+    todoList.create('do something')
+    todoList.create('do something else')
+    // execute
+    const result = todoList.deleteBy(1)
+    // verify
+    expect(result).toEqual(expected)
+  })
+  it('should return error message if trying to delete todo that does not exist', () => {
+    // set up
+    const expected = "Item not found"
+    todoList.create('do something')
+    todoList.create('do something else')
+    // execute
+    const result = todoList.deleteBy(3)
+    // verify
+    expect(result).toEqual(expected)
+  })
 });

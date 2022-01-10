@@ -26,6 +26,7 @@ class TodoList {
             this.todos[i].status = 'completed'
             return this.todos[i]
         }
+        return "Item not found"
     }
 
     getByStatus(status) {
@@ -36,6 +37,15 @@ class TodoList {
         const found = this.todos.find(todo => todo.id === id)
         if (found) {
             return found
+        }
+        return "Item not found"
+    }
+
+    deleteBy(id) {
+        const toDelete = this.todos.filter(todo => todo.id === id)
+        this.todos = this.todos.filter(todo => todo.id !== id)
+        if (toDelete.length > 0) {
+            return toDelete[0]
         }
         return "Item not found"
     }
