@@ -92,4 +92,18 @@ describe('TodoList', () => {
     // verify
     expect(result).toEqual(expected);
   });
+
+  it('gets a todo item by its id', () => {
+    // set up
+    const todoOne = {
+      id: 1,
+      text: 'turn the heating on!',
+      status: 'incomplete',
+    };
+    // execute
+    todoList.create(todoOne.text);
+    const result = todoList.findBy(1);
+    // verify
+    expect(result).toEqual(todoOne);
+  });
 });
