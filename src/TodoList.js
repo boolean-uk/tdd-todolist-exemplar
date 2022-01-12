@@ -34,6 +34,13 @@ class TodoList {
     if (!item) return 'item does not exist';
     return item;
   }
+
+  deleteBy(id) {
+    const newTodoList = this.todoList.filter((item) => {
+      item.id !== id;
+    });
+    return 'deleted';
+  }
 }
 
 module.exports = TodoList;
