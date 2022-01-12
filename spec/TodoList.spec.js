@@ -109,4 +109,19 @@ describe('TodoList', () => {
     };
     expect(checkResult(result)).toBe(true);
   });
+
+  it('removes a todo item by its id', () => {
+    // set up
+    const todoOne = {
+      id: 1,
+      text: 'turn the heating on!',
+      status: 'incomplete',
+    };
+    // execute
+    todoList.create(todoOne.text);
+    todoList.deleteBy(1);
+    const result = todoList.deleteBy(1);
+    // verify
+    expect(result).toEqual('deleted');
+  });
 });
