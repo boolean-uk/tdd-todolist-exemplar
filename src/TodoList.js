@@ -10,10 +10,9 @@ const InvalidTodo = "Todo does not exist"
 class TodoList {
 
   // Declare our todos array as private - this means we can only access
-  // it directly from within our TodoList class. This means that other code
-  // cannot modify this array directly - for example, adding a todo without an
-  // id. The only way this array can be modified is via the methods we expose
-  // on this class.
+  // it directly from within our TodoList class so other code cannot modify 
+  // the array directly - for example, adding a todo without an id. The only 
+  // way this array can be modified is via the methods we expose on this class.
   //
   // See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields
   #todos
@@ -83,7 +82,7 @@ class TodoList {
     // is a personal preference type thing.
     return this.#todos.filter(
       (todo) => todo.date.getTime() == DateUtil.stripTime(date).getTime()
-    );
+    )
   }
 
   getIncomplete() {
