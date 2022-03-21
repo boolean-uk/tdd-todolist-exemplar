@@ -1,40 +1,57 @@
 class TodoList {
-  constructor () {
-    this.id = 0
+  constructor() {
+    this.nextAvailableID = 1
     this.items = []
   }
 
-  create (str) {
-    this.id++
-    const item = { id: this.id, text: str, status: 'incomplete' }
+  create(description) {
+    const item = {
+      id: this.nextAvailableID,
+      text: description,
+      isComplete: false,
+    }
+    // add item
     this.items.push(item)
+    // increment to store next available id
+    this.nextAvailableID++
     return item
   }
 
-  showAll () {
+  getAll() {
     return this.items
   }
 
-  setComplete (id) {
-    const item = this.findBy(id)
-    item.status = 'complete'
+  setComplete(id) {
+    // find the item
+    const item = this.getById(id) // throws error if not found
+    item.isComplete = true // mark as completed
     return item
   }
 
-  getByStatus (status) {
-    return this.items.filter(item => item.status === status)
-  }
-
-  findBy (id) {
-    const item = this.items.find(item => item.id === id)
-    if (item === undefined) throw new Error('Item not found')
+  getById(id) {
+    // find the item that matches id
+    const item = this.items.find((item) => item.id === id)
+    // if item is not found, throw error
+    if (item === undefined) {
+      throw Error('Item not found')
+    }
     return item
   }
 
-  deleteBy (id) {
-    const item = this.findBy(id)
-    const index = this.items.indexOf(item)
-    return this.items.splice(index, 1)[0]
+  getByIsCompleted(isCompleted) {
+    return this.items.filter((item) => item.isComplete === isCompleted)
+  }
+
+  removeBy(id) {
+    const item = this.getById(id) // throws error if not found
+    for (let i = 0; i < this.items.length; i++) {
+      if (this.items[i].id === id) {
+        this.items.splice(i, 1) // remove the target item
+        break // exit the for loop
+      }
+    }
+    // if we get here, then item with id existed and has been removed
+    return item
   }
 }
 

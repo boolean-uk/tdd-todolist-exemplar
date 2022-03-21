@@ -1,13 +1,28 @@
-// Add your domain model below
+TodoList Domain Model
 
-Objects | Properties | Messages | Notes | Scenario | Output | Example
-------- | ---------- | -------- | ----- | -------- | ------ | -------
-TodoList | id @Int, items @Array | create(@String) | id increments, status starts off incomplete, adds item to array | | todo item | `create('hello') => {id: 1, text: "hello", status: "incomplete"}`
-| | | showAll() | | | all items | `showAll() => [{id: 1, text: "hello", status: "incomplete"}]`
-| | | setComplete(@Int) | finds item, then updates status property | item exists | updated todo item | `setComplete(1) => {id: 1, text: "hello", status: "complete"}`
-| | | | | item does not exist | thrown error | `setComplete(1) => thrown error "Item not Found"`
-| | | getByStatus(@String) | | | array, filtered by property status | `getByStatus("incomplete") => [{id: 1, text: "hello", status: "incomplete"}]`
-| | | findBy(@Int) | | item exists |item | `findBy(1) => {id: 1, text: "hello", status: "incomplete"}`
-| | | | | item does not exist | thrown error | `findBy(1) => thrown error "Item not Found"`
-| | | deleteBy(@Int) | finds item, then removes it from array | item exists | item | `deleteBy(@Int) => {id: 1, text: "hello", status: "incomplete"}`
-| | | | | item does not exist | thrown error | `deleteBy(@Int) => thrown error "Item not Found"`
+REQUIREMENTS:
+- Create a todo item that has an ID, text description, and starts off incomplete
+- Get all todo items
+- Set a todo completed by its ID
+- Get only todo items that are incomplete
+- Get only todo items that are complete
+- Search and return a todo item by its ID, or return a message saying it doesn’t exist
+- Remove a todo item by its ID
+
+object TodoItem
+properties
+  - id: int
+  - text: string
+  - isCompleted: boolean
+
+class TodoList
+properties
+  - nextAvailableID: int
+  - items: array of TodoItem
+methods
+  - create(description: string) -> return new TodoItem with incremented id
+  - getAll() -> return array of TodoItem
+  - setComplete(id: int) -> returns TodoItem or throw error (not found)
+  - getByIsCompleted(isCompleted: boolean) -> return array of TodoItems
+  - getById(id: int) -> return TodoItem or throw error (not found)
+  - removeBy(id: int) -> return removed TodoItem or throw error (not found)
